@@ -7,11 +7,10 @@ import PerfectScrollbar from "perfect-scrollbar";
 import AdminNavbar from "components/Navbars/AdminNavbar.jsx";
 import Footer from "components/Footer/Footer.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
-import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
 
 import routes from "routes.js";
 
-import logo from "assets/img/react-logo.png";
+import logo from "assets/img/logo.svg";
 
 var ps;
 
@@ -99,8 +98,8 @@ class Admin extends React.Component {
             routes={routes}
             bgColor={this.state.backgroundColor}
             logo={{
-              outterLink: "https://www.creative-tim.com/",
-              text: "Creative Tim",
+              outterLink: "https://placemetrixs.herokuapp.com/",
+              text: "Placemetrics",
               imgSrc: logo
             }}
             toggleSidebar={this.toggleSidebar}
@@ -123,10 +122,6 @@ class Admin extends React.Component {
             )}
           </div>
         </div>
-        <FixedPlugin
-          bgColor={this.state.backgroundColor}
-          handleBgClick={this.handleBgClick}
-        />
       </>
     );
   }
