@@ -98,6 +98,23 @@ let chartExample1 = {
           pointHoverBorderWidth: 15,
           pointRadius: 4,
           data: [100, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 100]
+        },
+        {
+          label: "My First dataset",
+          fill: true,
+          backgroundColor: gradientStroke,
+          borderColor: "#1f8ef1",
+          borderWidth: 2,
+          borderDash: [],
+          borderDashOffset: 0.0,
+          pointBackgroundColor: "#1f8ef1",
+          pointBorderColor: "rgba(255,255,255,0)",
+          pointHoverBackgroundColor: "#1f8ef1",
+          pointBorderWidth: 20,
+          pointHoverRadius: 4,
+          pointHoverBorderWidth: 15,
+          pointRadius: 4,
+          data: [50, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 100]
         }
       ]
     };

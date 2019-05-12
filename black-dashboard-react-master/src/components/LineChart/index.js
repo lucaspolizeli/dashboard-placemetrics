@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Card, CardBody, CardHeader, Row, Col, CardTitle } from "reactstrap";
 import { Line } from "react-chartjs-2";
 
-function GiantLineChart({ subtitle, title, size, dataToChart, options }) {
+function LineChart({ subtitle, title, size, dataToChart, options }) {
   return (
     <Col xs={size}>
       <Card className="card-chart">
@@ -25,7 +25,7 @@ function GiantLineChart({ subtitle, title, size, dataToChart, options }) {
   );
 }
 
-GiantLineChart.propTypes = {
+LineChart.propTypes = {
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   size: PropTypes.number.isRequired,
@@ -33,4 +33,4 @@ GiantLineChart.propTypes = {
   options: PropTypes.object.isRequired
 };
 
-export default GiantLineChart;
+export default LineChart;
