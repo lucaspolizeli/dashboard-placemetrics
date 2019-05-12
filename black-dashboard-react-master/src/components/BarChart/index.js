@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Card, CardBody, CardHeader, Row, Col, CardTitle } from "reactstrap";
+import { Card, CardBody, CardHeader, Col, CardTitle } from "reactstrap";
 import { Bar } from "react-chartjs-2";
 
 function BarChart({ title, icon, value, dataToChart, options, size }) {
