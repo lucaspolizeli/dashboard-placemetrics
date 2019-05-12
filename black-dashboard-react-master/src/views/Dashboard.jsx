@@ -7,7 +7,6 @@ import CardToViewValue from "./../components/CardToViewValue";
 // reactstrap components
 import {
   Button,
-  ButtonGroup,
   Card,
   CardHeader,
   CardBody,
@@ -32,6 +31,7 @@ import {
   chartExample3,
   chartExample4
 } from "variables/charts.jsx";
+import GiantLineChart from "../components/GiantLineChart";
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -51,26 +51,7 @@ class Dashboard extends React.Component {
         <div className="content">
           <Row>
             <CardToViewValue />
-            <Col xs="12">
-              <Card className="card-chart">
-                <CardHeader>
-                  <Row>
-                    <Col className="text-left" sm="6">
-                      <h5 className="card-category">Total Shipments</h5>
-                      <CardTitle tag="h2">Performance</CardTitle>
-                    </Col>
-                  </Row>
-                </CardHeader>
-                <CardBody>
-                  <div className="chart-area">
-                    <Line
-                      data={chartExample1[this.state.bigChartData]}
-                      options={chartExample1.options}
-                    />
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
+            <GiantLineChart />
           </Row>
           <Row>
             <Col lg="4">
