@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Card, CardBody, CardHeader, Row, Col, CardTitle } from "reactstrap";
 import { Line } from "react-chartjs-2";
 
-function LineChart({ subtitle, title, size, dataToChart, options }) {
+function LineChart({ subtitle, title, size, dataToChart, options, height }) {
   return (
     <Col xs={size}>
       <Card className="card-chart">
@@ -16,8 +16,8 @@ function LineChart({ subtitle, title, size, dataToChart, options }) {
           </Row>
         </CardHeader>
         <CardBody>
-          <div className="chart-area">
-            <Line data={dataToChart} options={options} />
+          <div>
+            <Line height={height} data={dataToChart} options={options} />
           </div>
         </CardBody>
       </Card>
@@ -28,6 +28,7 @@ function LineChart({ subtitle, title, size, dataToChart, options }) {
 LineChart.propTypes = {
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  height: PropTypes.number.isRequired,
   size: PropTypes.number.isRequired,
   data: PropTypes.object.isRequired,
   options: PropTypes.object.isRequired

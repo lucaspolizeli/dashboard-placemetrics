@@ -20,7 +20,7 @@ function CardToViewValue({ size, title, value, icon }) {
 CardToViewValue.propTypes = {
   size: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.any.isRequired,
   icon: PropTypes.string.isRequired
 };
 
