@@ -5,7 +5,7 @@ import LineChart from "../components/LineChart";
 import BarChart from "../components/BarChart";
 import DynamicTable from "../components/DynamicTable";
 import api from "./../services/api";
-import options from "./../components/LineChart/options";
+import options from "../variables/options";
 
 function Dashboard() {
   const [dataFromService, setDataFromService] = useState([]);
@@ -139,6 +139,71 @@ function Dashboard() {
     return formattedJSON;
   }
 
+  function renderDataToMaxTemperatureAndHumidityPerDay() {
+    if (!dataFromService.length || !dataFromService) return {};
+
+    let dayWithYourMaxTemperature = [];
+    for (let i = 0; i < dataFromService.length; i++) {
+      const currentData = dataFromService[i];
+
+      //ERROR IS HERE
+      // I NEED THAT VALUES WITH SAME DATE RETURN A ARRAY OF VALUES
+      const valuesWithSameDate = dataFromService.find(
+        date =>
+          date.createdAt.split("T")[0] === currentData.createdAt.split("T")[0]
+      );
+
+      let temperatures = [];
+      for (let i = 0; i < valuesWithSameDate.length; i++) {
+        const currentData = valuesWithSameDate[i];
+        const currentDate = currentData.split("T")[0];
+
+        if (currentDate === valuesWithSameDate[0].createdAt.split("T")[0]) {
+          temperatures.push(currentData.temperature);
+        }
+      }
+
+      const maxTemperatureFromValuesWithSameDate = Math.max.apply(
+        null,
+        temperatures
+      );
+
+      const oneDateFromValuesWithSameDate = valuesWithSameDate[0].createdAt
+        .split("T")[0]
+        .split(":");
+      const formattedOneDateFromValuesWithSameDate = `${
+        oneDateFromValuesWithSameDate[2]
+      }/${oneDateFromValuesWithSameDate[1]}`;
+
+      dayWithYourMaxTemperature.push({
+        day: formattedOneDateFromValuesWithSameDate,
+        value: maxTemperatureFromValuesWithSameDate
+      });
+    }
+
+    console.log("-> ", dayWithYourMaxTemperature);
+
+    return {};
+  }
+
+  function getMaxTemperatureToday() {
+    if (!dataFromService.length || !dataFromService) return 0;
+
+    const currentDay = new Date();
+
+    let temperatures = [];
+    for (let i = 0; i < dataFromService.length; i++) {
+      const currentData = dataFromService[i];
+      const formattedDay = currentData.createdAt.split("T")[0].split("-")[2];
+      if (parseInt(formattedDay) === currentDay.getDate()) {
+        temperatures.push(currentData.temperature);
+      }
+    }
+
+    const maxTemperature = Math.max.apply(null, temperatures);
+    return maxTemperature === Infinity ? 0 : maxTemperature;
+  }
+
   return (
     <>
       <div className="content">
@@ -174,7 +239,14 @@ function Dashboard() {
         </Row>
         <Row>
           {/* Max Temperature And Humidity Per Day */}
-          <BarChart />
+          <BarChart
+            title="Máximas Temperaturas"
+            size={6}
+            value={getMaxTemperatureToday()}
+            dataToChart={renderDataToMaxTemperatureAndHumidityPerDay()}
+            icon="tim-icons icon-chart-bar-32"
+            options={options}
+          />
           {/* Requests Per Day */}
           <LineChart size={6} />
         </Row>
