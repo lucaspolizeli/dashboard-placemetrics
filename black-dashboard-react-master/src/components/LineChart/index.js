@@ -17,7 +17,11 @@ function LineChart({ subtitle, title, size, dataToChart, options, height }) {
         </CardHeader>
         <CardBody>
           <div>
-            <Line height={height} data={dataToChart} options={options} />
+            <Line
+              height={height}
+              data={!dataToChart ? {} : dataToChart}
+              options={options}
+            />
           </div>
         </CardBody>
       </Card>
@@ -30,8 +34,8 @@ LineChart.propTypes = {
   title: PropTypes.string.isRequired,
   height: PropTypes.number.isRequired,
   size: PropTypes.number.isRequired,
-  data: PropTypes.object.isRequired,
-  options: PropTypes.object.isRequired
+  data: PropTypes.object,
+  options: PropTypes.object
 };
 
 export default LineChart;

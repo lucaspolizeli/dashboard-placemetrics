@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Card, CardBody, CardHeader, Col, CardTitle } from "reactstrap";
 import { Bar } from "react-chartjs-2";
+import optionsFromBarChart from "./options";
 
-function BarChart({ title, icon, value, dataToChart, options, size }) {
+function BarChart({ title, icon, value, data, options, size, height }) {
   return (
     <Col lg={size}>
       <Card className="card-chart">
@@ -15,7 +16,11 @@ function BarChart({ title, icon, value, dataToChart, options, size }) {
         </CardHeader>
         <CardBody>
           <div className="chart-area">
-            <Bar data={dataToChart} options={options} />
+            <Bar
+              data={!data ? {} : data}
+              height={height}
+              options={!options ? optionsFromBarChart : options}
+            />
           </div>
         </CardBody>
       </Card>
@@ -25,10 +30,11 @@ function BarChart({ title, icon, value, dataToChart, options, size }) {
 
 BarChart.propTypes = {
   title: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.any.isRequired,
+  height: PropTypes.number.isRequired,
   icon: PropTypes.string.isRequired,
-  dataToChart: PropTypes.object.isRequired,
-  options: PropTypes.object.isRequired,
+  data: PropTypes.func,
+  options: PropTypes.object,
   size: PropTypes.number.isRequired
 };
 
